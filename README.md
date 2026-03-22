@@ -75,3 +75,11 @@ Summary statistics (% time in each regime, average spell duration, number of spe
 ├── .env             FRED API key (not committed)
 └── .env.example     Template
 ```
+
+## LICENSE
+
+The source code in this repository is licensed under the [MIT License](LICENSE).
+
+The white paper (`paper/macro_regime_swap_whitepaper.docx`) is © 2026 Greyfield Labs LLC. 
+All rights reserved. It is made available for reading and citation purposes only. 
+It may not be reproduced, modified, or redistributed without explicit written permission.
