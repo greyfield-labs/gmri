@@ -1,0 +1,7 @@
+fredapi>=0.5.1
+pandas>=2.0.0
+numpy>=1.25.0
+scipy>=1.11.0
+matplotlib>=3.8.0
+seaborn>=0.13.0
+python-dotenv>=1.0.0
