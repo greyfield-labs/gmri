@@ -243,8 +243,8 @@ def plot_regime_timeline_v2(
     Enhanced timeline chart with era boundary lines, era name labels,
     and per-era regime % annotations. Requires robustness.ERAS and REGIME_SHORT.
     """
-    from robustness import ERAS, ERA_BOUNDARY_DATES
-    from classifier import REGIME_SHORT, REGIME_ORDER
+    from .robustness import ERAS, ERA_BOUNDARY_DATES
+    from .classifier import REGIME_SHORT, REGIME_ORDER
 
     fig, ax = plt.subplots(figsize=(14, 8))
 

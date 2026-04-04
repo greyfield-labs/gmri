@@ -33,3 +33,4 @@ Thumbs.db
 # Output (keep PNGs in outputs/ but ignore any local scratch)
 
 *.log
+.claude/

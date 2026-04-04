@@ -10,14 +10,14 @@ import matplotlib.ticker as mticker
 import numpy as np
 import pandas as pd
 
-from classifier import (
+from .classifier import (
     REGIME_ORDER,
     REGIME_SHORT,
     apply_min_duration_filter,
     classify,
     compute_regime_stats,
 )
-from charts import REGIME_COLORS, FIG_DPI
+from .charts import REGIME_COLORS, FIG_DPI
 
 # ---------------------------------------------------------------------------
 # Era definitions — single source of truth; imported by charts.py too

@@ -1,18 +1,21 @@
-from data import get_fred_client, build_master_dataframe
-from classifier import (
+import os
+from pathlib import Path
+
+from .data import get_fred_client, build_master_dataframe
+from .classifier import (
     classify,
     compute_regime_stats,
     compute_transition_matrix,
     print_signal_conflict_report,
 )
-from charts import (
+from .charts import (
     plot_regime_timeline,
     plot_regime_timeline_v2,
     plot_transition_matrix,
     plot_signal_chart,
     print_stats_table,
 )
-from robustness import (
+from .robustness import (
     threshold_sensitivity_analysis,
     plot_threshold_sensitivity,
     print_threshold_sensitivity,
@@ -21,6 +24,14 @@ from robustness import (
     plot_era_breakdown,
     print_filtered_vs_unfiltered,
 )
+
+
+OUTPUTS = Path(__file__).parent.parent / "outputs"
+OUTPUTS.mkdir(exist_ok=True)
+
+
+def _out(filename: str) -> str:
+    return str(OUTPUTS / filename)
 
 
 def main() -> None:
@@ -48,9 +59,9 @@ def main() -> None:
 
     # --- Core charts ---
     print("Generating core charts...")
-    plot_regime_timeline(df, save_path="regime_timeline.png")
-    plot_transition_matrix(transition_matrix, save_path="transition_matrix.png")
-    plot_signal_chart(df, save_path="signal_chart.png")
+    plot_regime_timeline(df, save_path=_out("regime_timeline.png"))
+    plot_transition_matrix(transition_matrix, save_path=_out("transition_matrix.png"))
+    plot_signal_chart(df, save_path=_out("signal_chart.png"))
 
     # --- Robustness checks ---
     print("\nRunning robustness checks...")
@@ -59,20 +70,20 @@ def main() -> None:
     print("  Threshold sensitivity analysis...")
     sensitivity_results = threshold_sensitivity_analysis(df_raw, thresholds=[2.0, 2.5, 3.0])
     print_threshold_sensitivity(sensitivity_results)
-    plot_threshold_sensitivity(sensitivity_results, save_path="threshold_sensitivity.png")
+    plot_threshold_sensitivity(sensitivity_results, save_path=_out("threshold_sensitivity.png"))
 
     # 2. Era breakdown
     print("  Era breakdown...")
     era_results = era_breakdown(df)
     print_era_breakdown(era_results)
-    plot_era_breakdown(era_results, save_path="era_breakdown.png")
+    plot_era_breakdown(era_results, save_path=_out("era_breakdown.png"))
 
     # 3. Filtered vs unfiltered comparison
     print_filtered_vs_unfiltered(df, min_duration=3)
 
     # 4. Updated timeline with era annotations
     print("  Generating regime_timeline_v2...")
-    plot_regime_timeline_v2(df, era_results=era_results, save_path="regime_timeline_v2.png")
+    plot_regime_timeline_v2(df, era_results=era_results, save_path=_out("regime_timeline_v2.png"))
 
     print("\nDone. Output files:")
     for f in [
@@ -83,7 +94,7 @@ def main() -> None:
         "era_breakdown.png",
         "regime_timeline_v2.png",
     ]:
-        print(f"  {f}")
+        print(f"  outputs/{f}")
 
 
 if __name__ == "__main__":
