@@ -109,3 +109,28 @@ A free FRED API key is available at [fred.stlouisfed.org/docs/api/api_key.html](
 ---
 
 ## Project Structure
+
+├── src/
+│   ├── main.py          Orchestration
+│   ├── data.py          FRED data fetching and preprocessing
+│   ├── classifier.py    Regime classification logic
+│   ├── charts.py        Visualization
+│   └── robustness.py    Sensitivity and era analysis
+├── validate/            Independent stress test suite (10 scripts)
+├── outputs/             Generated charts
+├── paper/               Working paper (PDF + DOCX)
+├── requirements.txt
+├── .env.example
+└── .gitignore
+
+---
+
+## License
+
+Source code: [MIT License](LICENSE)
+
+White paper (`paper/`): © 2026 Greyfield Labs LLC. All rights reserved.
+
+---
+
+*Greyfield Labs LLC | research@greyfieldlabs.com*
