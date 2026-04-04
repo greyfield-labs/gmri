@@ -1,0 +1,46 @@
+=======================================================
+  GMRI INDEPENDENT REPLICATION REPORT
+  Generated: 2026-04-03 16:07:28
+=======================================================
+
+PARAMETERS
+  Start date:       1970-01-01 (1971-01 after CPI YoY lag)
+  CPI threshold:    2.5%
+  GDP gap window:   3 months (rolling mean)
+  Growth logic:     AND (GDP gap > 0 AND unemp gap < 0)
+  Min duration:     3 months
+  Tolerance:        ±2.0pp
+
+STEP 1 — Fetching data from FRED
+DATA DIAGNOSTICS
+  [DIAG-1] Date range: 1971-01 to 2025-09 (657 months)  ← expect 657  ✓
+  [DIAG-2] CPI YoY max in 1980: 14.6%  ← expect ~14%
+  [DIAG-3] GDPC1 vs GDPPOT at 1990-09: GDPC1=10,034.5  GDPPOT=10,064.5  gap=-0.30%
+
+STEP 2 — Classification
+  [DIAG-4] GDP gap range: [-7.87%, 4.23%]  ← expect roughly -5% to +4%
+  [DIAG-5] Unemployment gap at 2009-12: 4.86pp  ← expect ~+4pp (labor market deeply slack)
+  [DIAG-6] Months with CPI > 2.5%: 444 (67.6%)  ← sanity check
+
+STEP 3 — Min-duration filter
+  [DIAG-7] Regime spells before filter: 55  ← expect 55  ✓
+  [DIAG-8] Regime spells after  filter: 37  ← expect 37  ✓
+  [DIAG-9] Spells eliminated:           18  ← expect 18  ✓
+
+STEP 4 — Regime statistics
+  Regime                  % Time   Avg Dur  # Spells
+  ----------------------------------------------------
+  Goldilocks                9.1%    12.0mo        5
+  Overheating              27.4%    18.0mo       10
+  Stagflation              39.9%    18.7mo       14
+  Deflationary Bust        23.6%    19.4mo        8
+
+REPLICATION RESULTS (tolerance ±2.0pp)
+-------------------------------------------------------
+  [PASS] Goldilocks            : replicated=  9.1%  reference=  9.3%  Δ=0.2pp
+  [PASS] Overheating           : replicated= 27.4%  reference= 28.0%  Δ=0.6pp
+  [PASS] Stagflation           : replicated= 39.9%  reference= 40.0%  Δ=0.1pp
+  [PASS] Deflationary Bust     : replicated= 23.6%  reference= 23.0%  Δ=0.6pp
+
+OVERALL: PASS (4/4 regimes within ±2.0pp)
+=======================================================

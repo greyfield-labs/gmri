@@ -1,0 +1,104 @@
+========================================================================
+  GMRI ALTERNATIVE FRAMEWORK COMPARISON
+  Generated: 2026-04-03 16:33:36
+  Common date range: 1971-01 – 2025-09  (657 months)
+  CPI threshold: 2.5%  |  Min duration: 3mo    (identical across all frameworks)
+========================================================================
+
+  NOTE: HP filter uses lambda=1600 (quarterly convention) applied to
+  monthly-interpolated GDPC1. This under-smooths the trend on monthly
+  data, leaving a noisier cycle component → expect more transitions.
+
+FRAMEWORK DEFINITIONS
+------------------------------------------------------------------------
+  Baseline GMRI
+   ('Baseline GMRI', 'GDP gap = (GDPC1 − GDPPOT)/GDPPOT × 100, 3-mo rolling smooth;\n   AND unemployment gap (UNRATE − NROU) < 0. Dual-signal AND logic.')
+
+  HP Filter (λ=1600)
+   ('HP Filter (λ=1600)', 'Hodrick-Prescott filter applied to monthly GDPC1 with λ=1600.\n   Growth above trend ⟺ HP cycle component > 0.')
+
+  NBER Binary
+   ('NBER Binary', 'USREC indicator from FRED. Growth above trend ⟺ USREC = 0\n   (NBER expansion). Binary step function — no gradation.')
+
+  CFNAI (≥0)
+   ('CFNAI (≥0)', 'Chicago Fed National Activity Index. Growth above trend ⟺ CFNAI ≥ 0.\n   85-indicator composite; negative = below historical trend.')
+
+REGIME DISTRIBUTION
+------------------------------------------------------------------------
+  Framework                GL%     OV%     SG%     DB%   N_trans   Avg_diag
+  --------------------------------------------------------------------
+  Baseline GMRI            9.1    27.4    39.9    23.6        36     0.9403
+  HP Filter (λ=1600)      13.2    36.2    32.0    18.6        71     0.8889
+  NBER Binary             31.2    57.8     9.7     1.2        33     0.9220
+  CFNAI (≥0)              16.9    44.4    23.9    14.8        38     0.9362
+
+DELTA VS BASELINE GMRI
+------------------------------------------------------------------------
+  Framework                ΔGL%     ΔOV%     ΔSG%     ΔDB%   ΔN_trans   ΔAvg_diag
+  ------------------------------------------------------------------------
+  HP Filter (λ=1600)       +4.1     +8.8     -7.9     -5.0        +35     -0.0514
+  NBER Binary             +22.1    +30.4    -30.2    -22.4         -3     -0.0183
+  CFNAI (≥0)               +7.8    +17.0    -16.0     -8.8         +2     -0.0041
+
+TRANSITION PROBABILITY MATRICES
+------------------------------------------------------------------------
+
+  Baseline GMRI
+  From → To                      GL         OV         SG         DB
+  --------------------------------------------------------------
+  Goldilocks              0.917( 55)*  0.067(  4)   0.000(  0)   0.017(  1) 
+  Overheating             0.017(  3)   0.950(170)*  0.034(  6)   0.000(  0) 
+  Stagflation             0.004(  1)   0.023(  6)   0.947(248)*  0.027(  7) 
+  Deflationary Bust       0.006(  1)   0.000(  0)   0.045(  7)   0.948(147)*
+  --------------------------------------------------------------
+  Row totals                    60        179        262        155 
+
+  HP Filter (λ=1600)
+  From → To                      GL         OV         SG         DB
+  --------------------------------------------------------------
+  Goldilocks              0.874( 76)*  0.023(  2)   0.011(  1)   0.092(  8) 
+  Overheating             0.004(  1)   0.903(214)*  0.080( 19)   0.013(  3) 
+  Stagflation             0.014(  3)   0.090( 19)   0.886(186)*  0.010(  2) 
+  Deflationary Bust       0.057(  7)   0.016(  2)   0.033(  4)   0.893(109)*
+  --------------------------------------------------------------
+  Row totals                    87        237        210        122 
+
+  NBER Binary
+  From → To                      GL         OV         SG         DB
+  --------------------------------------------------------------
+  Goldilocks              0.946(194)*  0.054( 11)   0.000(  0)   0.000(  0) 
+  Overheating             0.024(  9)   0.960(364)*  0.016(  6)   0.000(  0) 
+  Stagflation             0.016(  1)   0.062(  4)   0.906( 58)*  0.016(  1) 
+  Deflationary Bust       0.125(  1)   0.000(  0)   0.000(  0)   0.875(  7)*
+  --------------------------------------------------------------
+  Row totals                   205        379         64          8 
+
+  CFNAI (≥0)
+  From → To                      GL         OV         SG         DB
+  --------------------------------------------------------------
+  Goldilocks              0.910(101)*  0.063(  7)   0.000(  0)   0.027(  3) 
+  Overheating             0.014(  4)   0.952(278)*  0.027(  8)   0.007(  2) 
+  Stagflation             0.000(  0)   0.032(  5)   0.955(149)*  0.013(  2) 
+  Deflationary Bust       0.062(  6)   0.010(  1)   0.000(  0)   0.928( 90)*
+  --------------------------------------------------------------
+  Row totals                   111        292        156         97 
+
+========================================================================
+  INTERPRETATION
+========================================================================
+
+  Goldilocks frequency range across frameworks: 9.1% – 31.2%
+  Most similar to baseline: HP Filter (λ=1600) (Δ=+4.1pp)
+  Most divergent from baseline: NBER Binary (Δ=+22.1pp)
+
+  Transition count range: 33 – 71
+  Baseline: 36  |  HP Filter: 71  |  NBER: 33  |  CFNAI: 38
+
+  Avg persistence range: 0.8889 – 0.9403
+
+  Key finding: if alternative frameworks produce materially different
+  Goldilocks frequencies (>5pp) or transition counts (>20%), the
+  GMRI regime assignments are sensitive to the growth signal choice
+  and that assumption should be disclosed in the white paper.
+
+========================================================================

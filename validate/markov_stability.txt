@@ -1,0 +1,127 @@
+======================================================================
+  GMRI MARKOV STABILITY TEST
+  Generated: 2026-04-03 16:22:07
+  Parameters: CPI=2.5%  GDP window=3mo  Min duration=3mo  Growth=AND
+======================================================================
+
+FULL-SAMPLE TRANSITION MATRIX (probabilities)
+----------------------------------------------------------------------
+  From → To                    GL       OV       SG       DB
+  ------------------------------------------------------
+  Goldilocks              0.917 *  0.067    0.000    0.017  
+  Overheating             0.017    0.950 *  0.034    0.000  
+  Stagflation             0.004    0.023    0.947 *  0.027  
+  Deflationary Bust       0.006    0.000    0.045    0.948 *
+  (* diagonal persistence)
+
+FULL-SAMPLE DIAGONAL PERSISTENCE
+----------------------------------------------------------------------
+  Goldilocks              0.9167  ████████████████████████████
+  Overheating             0.9497  ████████████████████████████
+  Stagflation             0.9466  ████████████████████████████
+  Deflationary Bust       0.9484  ████████████████████████████
+
+ROLLING PERSISTENCE SUMMARY
+----------------------------------------------------------------------
+  Window: 10 years  |  Step: 1 year  |  Windows computed: 46
+
+  Regime                    Mean     Std     Min     Max   Range
+  ------------------------------------------------------------
+  Goldilocks              0.8961  0.0966  0.5000  1.0000  0.5000
+  Overheating             0.9216  0.0629  0.7500  1.0000  0.2500
+  Stagflation             0.9219  0.0452  0.8182  0.9877  0.1695
+  Deflationary Bust       0.8792  0.1155  0.6000  0.9881  0.3881
+
+  Most volatile diagonal: Goldilocks (range=0.5000)
+
+ERA-LEVEL TRANSITION MATRICES AND CHI-SQUARED TESTS
+----------------------------------------------------------------------
+  H0: era transition probabilities equal full-sample probabilities
+  Rejection threshold: p < 0.05
+
+  Pre-Volcker  (108 months)
+    χ²=2.166  df=3  p=0.5388  →  FAIL TO REJECT ✓
+
+    Transition probabilities — era vs full-sample:
+    From → To                         GL            OV            SG            DB
+    ------------------------------------------------------------------------
+    Goldilocks              nan(+nan)   nan(+nan)   nan(+nan)   nan(+nan) 
+    Overheating             0.000(-0.017)   0.979(++0.029)   0.021(-0.012)   0.000(++0.000) 
+    Stagflation             0.000(-0.004)   0.033(++0.010)   0.967(++0.020)   0.000(-0.027) 
+    Deflationary Bust       nan(+nan)   nan(+nan)   nan(+nan)   nan(+nan) 
+    (* diff ≥ 0.10 from full-sample)
+
+    Top χ² contributors:
+      SG→DB  O=0  E=1.6  contrib=1.603  (underrepresented)
+      SG→OV  O=2  E=1.4  contrib=0.285  (overrepresented)
+      OV→SG  O=1  E=1.6  contrib=0.210  (underrepresented)
+
+  Great Moderation  (252 months)
+    χ²=1.761  df=4  p=0.7795  →  FAIL TO REJECT ✓
+
+    Transition probabilities — era vs full-sample:
+    From → To                         GL            OV            SG            DB
+    ------------------------------------------------------------------------
+    Goldilocks              0.966(++0.049)   0.034(-0.032)   0.000(++0.000)   0.000(-0.017) 
+    Overheating             0.000(-0.017)   0.962(++0.012)   0.038(++0.005)   0.000(++0.000) 
+    Stagflation             0.007(++0.003)   0.013(-0.010)   0.961(++0.014)   0.020(-0.007) 
+    Deflationary Bust       0.000(-0.006)   0.000(++0.000)   0.167(++0.122)*  0.833(-0.115)*
+    (* diff ≥ 0.10 from full-sample)
+
+    Top χ² contributors:
+      SG→OV  O=2  E=3.5  contrib=0.630  (underrepresented)
+      GL→OV  O=1  E=1.9  contrib=0.451  (underrepresented)
+      SG→DB  O=3  E=4.1  contrib=0.277  (underrepresented)
+
+  Post-GFC  (228 months)
+    χ²=9.604  df=4  p=0.0477  →  REJECT H0 ✗ ← UNSTABLE
+
+    Transition probabilities — era vs full-sample:
+    From → To                         GL            OV            SG            DB
+    ------------------------------------------------------------------------
+    Goldilocks              0.923(++0.006)   0.077(++0.010)   0.000(++0.000)   0.000(-0.017) 
+    Overheating             0.057(++0.040)   0.886(-0.064)   0.057(++0.024)   0.000(++0.000) 
+    Stagflation             0.000(-0.004)   0.024(++0.001)   0.881(-0.066)   0.095(++0.069) 
+    Deflationary Bust       0.008(++0.002)   0.000(++0.000)   0.024(-0.021)   0.968(++0.019) 
+    (* diff ≥ 0.10 from full-sample)
+
+    Top χ² contributors:
+      SG→DB  O=4  E=1.1  contrib=7.381  (overrepresented)
+      DB→SG  O=3  E=5.6  contrib=1.207  (underrepresented)
+      OV→SG  O=2  E=1.2  contrib=0.583  (overrepresented)
+
+  Recent  (69 months)
+    χ²=2.284  df=1  p=0.1307  →  FAIL TO REJECT ✓
+
+    Transition probabilities — era vs full-sample:
+    From → To                         GL            OV            SG            DB
+    ------------------------------------------------------------------------
+    Goldilocks              0.500(-0.417)*  0.250(++0.183)*  0.000(++0.000)   0.250(++0.233)*
+    Overheating             0.023(++0.006)   0.977(++0.027)   0.000(-0.034)   0.000(++0.000) 
+    Stagflation             0.000(-0.004)   0.125(++0.102)*  0.875(-0.072)   0.000(-0.027) 
+    Deflationary Bust       0.000(-0.006)   0.000(++0.000)   0.077(++0.032)   0.923(-0.025) 
+    (* diff ≥ 0.10 from full-sample)
+
+    Top χ² contributors:
+      OV→SG  O=0  E=1.4  contrib=1.441  (underrepresented)
+      GL→GL  O=2  E=3.7  contrib=0.758  (underrepresented)
+      SG→SG  O=7  E=7.6  contrib=0.043  (underrepresented)
+
+======================================================================
+  OVERALL STABILITY VERDICT
+======================================================================
+
+  UNSTABLE: 1 era(s) reject H0 at p < 0.05:
+    - Post-GFC
+
+  This means transition probabilities differ significantly across
+  structural eras. Regime persistence and transition paths changed
+  over time — a single stationary Markov chain is a simplification.
+
+  Implication for white paper:
+  Consider era-conditional transition matrices rather than a single
+  full-sample matrix. The rolling persistence chart (rolling_persistence.png)
+  shows where the structural breaks occurred.
+
+  Rolling persistence chart: validate/rolling_persistence.png
+======================================================================

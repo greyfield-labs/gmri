@@ -1,0 +1,316 @@
+========================================================================
+  GMRI HISTORICAL EVENT VALIDATION
+  Generated: 2026-04-03 16:17:50
+  Parameters: CPI threshold=2.5%  |  GDP window=3mo  |  Min duration=3mo  |  Growth logic=AND
+========================================================================
+
+------------------------------------------------------------------------
+  Oil Shock  (1973-10 – 1975-03)    [FAIL ✗]
+------------------------------------------------------------------------
+  Economic context:
+    OPEC embargo quadrupled oil prices; CPI surged above 10% while
+    real GDP contracted. Textbook stagflation: supply shock drove both
+    high inflation and below-trend growth simultaneously.
+
+  Expected regime(s):  Stagflation
+  Dominant regime:     Stagflation (56% of months)  ✓
+  Months in period:    18
+  Months matching:     10 / 18 (56%)  ← ≥75% required to pass
+
+  Month-by-month assignments:
+  Date      Regime              CPI YoY  GDP gap   U gap  Match
+  ----------------------------------------------------------------
+  1973-10   Overheating            8.1%   +2.77%  -1.51pp  ✗  G↑ I↑
+  1973-11   Overheating            8.2%   +2.64%  -1.32pp  ✗  G↑ I↑
+  1973-12   Overheating            8.9%   +2.23%  -1.22pp  ✗  G↑ I↑
+  1974-01   Overheating            9.6%   +1.64%  -1.03pp  ✗  G↑ I↑
+  1974-02   Overheating           10.0%   +1.11%  -0.93pp  ✗  G↑ I↑
+  1974-03   Overheating           10.1%   +0.77%  -1.03pp  ✗  G↑ I↑
+  1974-04   Overheating           10.1%   +0.56%  -1.04pp  ✗  G↑ I↑
+  1974-05   Overheating           10.7%   +0.26%  -1.04pp  ✗  G↑ I↑
+  1974-06   Stagflation           10.9%   -0.22%  -0.75pp  ✓  G↓ I↑
+  1974-07   Stagflation           11.5%   -0.82%  -0.65pp  ✓  G↓ I↑
+  1974-08   Stagflation           10.9%   -1.39%  -0.65pp  ✓  G↓ I↑
+  1974-09   Stagflation           11.9%   -1.85%  -0.26pp  ✓  G↓ I↑
+  1974-10   Stagflation           11.8%   -2.25%  -0.16pp  ✓  G↓ I↑
+  1974-11   Stagflation           12.2%   -2.73%  +0.44pp  ✓  G↓ I↑
+  1974-12   Stagflation           12.1%   -3.34%  +1.03pp  ✓  G↓ I↑
+  1975-01   Stagflation           11.8%   -4.00%  +1.93pp  ✓  G↓ I↑
+  1975-02   Stagflation           11.2%   -4.52%  +1.93pp  ✓  G↓ I↑
+  1975-03   Stagflation           10.5%   -4.81%  +2.42pp  ✓  G↓ I↑
+
+  Mismatch detail (8 month(s)):
+    1973-10  actual=Overheating         growth is above-trend (GDP gap=+2.77%, unemp gap=-1.51pp)
+    1973-11  actual=Overheating         growth is above-trend (GDP gap=+2.64%, unemp gap=-1.32pp)
+    1973-12  actual=Overheating         growth is above-trend (GDP gap=+2.23%, unemp gap=-1.22pp)
+    1974-01  actual=Overheating         growth is above-trend (GDP gap=+1.64%, unemp gap=-1.03pp)
+    1974-02  actual=Overheating         growth is above-trend (GDP gap=+1.11%, unemp gap=-0.93pp)
+    1974-03  actual=Overheating         growth is above-trend (GDP gap=+0.77%, unemp gap=-1.03pp)
+    1974-04  actual=Overheating         growth is above-trend (GDP gap=+0.56%, unemp gap=-1.04pp)
+    1974-05  actual=Overheating         growth is above-trend (GDP gap=+0.25%, unemp gap=-1.04pp)
+
+------------------------------------------------------------------------
+  Volcker Recession  (1981-07 – 1982-11)    [PASS ✓]
+------------------------------------------------------------------------
+  Economic context:
+    Fed Funds rate peaked near 20% to break the inflation spiral. Real
+    GDP fell sharply (two-quarter contraction in 1982) while CPI
+    remained above 5%. Growth below trend, inflation above threshold.
+
+  Expected regime(s):  Stagflation
+  Dominant regime:     Stagflation (100% of months)  ✓
+  Months in period:    17
+  Months matching:     17 / 17 (100%)  ← ≥75% required to pass
+
+  Month-by-month assignments:
+  Date      Regime              CPI YoY  GDP gap   U gap  Match
+  ----------------------------------------------------------------
+  1981-07   Stagflation           10.8%   -1.66%  +1.03pp  ✓  G↓ I↑
+  1981-08   Stagflation           10.8%   -1.60%  +1.23pp  ✓  G↓ I↑
+  1981-09   Stagflation           11.0%   -1.84%  +1.44pp  ✓  G↓ I↑
+  1981-10   Stagflation           10.3%   -2.42%  +1.74pp  ✓  G↓ I↑
+  1981-11   Stagflation            9.6%   -3.19%  +2.14pp  ✓  G↓ I↑
+  1981-12   Stagflation            8.9%   -4.02%  +2.34pp  ✓  G↓ I↑
+  1982-01   Stagflation            8.3%   -4.74%  +2.45pp  ✓  G↓ I↑
+  1982-02   Stagflation            7.6%   -5.24%  +2.75pp  ✓  G↓ I↑
+  1982-03   Stagflation            6.9%   -5.48%  +2.85pp  ✓  G↓ I↑
+  1982-04   Stagflation            6.6%   -5.56%  +3.16pp  ✓  G↓ I↑
+  1982-05   Stagflation            6.9%   -5.67%  +3.26pp  ✓  G↓ I↑
+  1982-06   Stagflation            7.2%   -5.89%  +3.46pp  ✓  G↓ I↑
+  1982-07   Stagflation            6.6%   -6.24%  +3.67pp  ✓  G↓ I↑
+  1982-08   Stagflation            6.0%   -6.61%  +3.67pp  ✓  G↓ I↑
+  1982-09   Stagflation            4.9%   -6.93%  +3.97pp  ✓  G↓ I↑
+  1982-10   Stagflation            5.0%   -7.15%  +4.27pp  ✓  G↓ I↑
+  1982-11   Stagflation            4.5%   -7.25%  +4.68pp  ✓  G↓ I↑
+
+------------------------------------------------------------------------
+  Tech Expansion  (1995-01 – 2000-03)    [FAIL ✗]
+------------------------------------------------------------------------
+  Economic context:
+    Productivity boom drove GDP well above potential. CPI was subdued
+    early (Goldilocks), then crept toward and above 2.5% late in the
+    cycle as labour markets tightened (Overheating). Both are
+    acceptable.
+
+  Expected regime(s):  Goldilocks or Overheating
+  Dominant regime:     Goldilocks (46% of months)  ✓
+  Months in period:    63
+  Months matching:     39 / 63 (62%)  ← ≥75% required to pass
+
+  Month-by-month assignments:
+  Date      Regime              CPI YoY  GDP gap   U gap  Match
+  ----------------------------------------------------------------
+  1995-01   Stagflation            2.9%   +0.19%  +0.21pp  ✗  G↓ I↑
+  1995-02   Stagflation            2.9%   +0.02%  +0.01pp  ✗  G↓ I↑
+  1995-03   Stagflation            2.8%   -0.16%  +0.02pp  ✗  G↓ I↑
+  1995-04   Stagflation            3.1%   -0.31%  +0.42pp  ✗  G↓ I↑
+  1995-05   Stagflation            3.1%   -0.39%  +0.23pp  ✗  G↓ I↑
+  1995-06   Stagflation            3.0%   -0.40%  +0.24pp  ✗  G↓ I↑
+  1995-07   Stagflation            2.8%   -0.36%  +0.34pp  ✗  G↓ I↑
+  1995-08   Stagflation            2.6%   -0.32%  +0.35pp  ✗  G↓ I↑
+  1995-09   Stagflation            2.5%   -0.30%  +0.26pp  ✗  G↓ I↑
+  1995-10   Stagflation            2.7%   -0.32%  +0.16pp  ✗  G↓ I↑
+  1995-11   Stagflation            2.6%   -0.37%  +0.27pp  ✗  G↓ I↑
+  1995-12   Stagflation            2.5%   -0.43%  +0.27pp  ✗  G↓ I↑
+  1996-01   Stagflation            2.8%   -0.43%  +0.28pp  ✗  G↓ I↑
+  1996-02   Stagflation            2.7%   -0.32%  +0.19pp  ✗  G↓ I↑
+  1996-03   Stagflation            2.8%   -0.09%  +0.19pp  ✗  G↓ I↑
+  1996-04   Stagflation            2.8%   +0.20%  +0.30pp  ✗  G↓ I↑
+  1996-05   Stagflation            2.8%   +0.43%  +0.30pp  ✗  G↓ I↑
+  1996-06   Stagflation            2.8%   +0.54%  +0.01pp  ✗  G↓ I↑
+  1996-07   Stagflation            2.9%   +0.56%  +0.21pp  ✗  G↓ I↑
+  1996-08   Overheating            2.8%   +0.57%  -0.18pp  ✓  G↑ I↑
+  1996-09   Overheating            3.0%   +0.61%  -0.08pp  ✓  G↑ I↑
+  1996-10   Overheating            3.1%   +0.67%  -0.07pp  ✓  G↑ I↑
+  1996-11   Stagflation            3.2%   +0.66%  +0.14pp  ✗  G↓ I↑
+  1996-12   Stagflation            3.4%   +0.58%  +0.14pp  ✗  G↓ I↑
+  1997-01   Stagflation            3.0%   +0.49%  +0.05pp  ✗  G↓ I↑
+  1997-02   Stagflation            3.0%   +0.49%  -0.05pp  ✗  G↑ I↑
+  1997-03   Stagflation            2.8%   +0.62%  -0.04pp  ✗  G↑ I↑
+  1997-04   Goldilocks             2.4%   +0.86%  -0.14pp  ✓  G↑ I↓
+  1997-05   Goldilocks             2.2%   +1.11%  -0.33pp  ✓  G↑ I↓
+  1997-06   Goldilocks             2.2%   +1.29%  -0.23pp  ✓  G↑ I↓
+  1997-07   Goldilocks             2.2%   +1.38%  -0.33pp  ✓  G↑ I↓
+  1997-08   Goldilocks             2.3%   +1.39%  -0.42pp  ✓  G↑ I↓
+  1997-09   Goldilocks             2.2%   +1.36%  -0.32pp  ✓  G↑ I↓
+  1997-10   Goldilocks             2.1%   +1.31%  -0.51pp  ✓  G↑ I↓
+  1997-11   Goldilocks             1.9%   +1.27%  -0.61pp  ✓  G↑ I↓
+  1997-12   Goldilocks             1.7%   +1.26%  -0.50pp  ✓  G↑ I↓
+  1998-01   Goldilocks             1.6%   +1.25%  -0.60pp  ✓  G↑ I↓
+  1998-02   Goldilocks             1.4%   +1.24%  -0.59pp  ✓  G↑ I↓
+  1998-03   Goldilocks             1.4%   +1.21%  -0.49pp  ✓  G↑ I↓
+  1998-04   Goldilocks             1.4%   +1.17%  -0.89pp  ✓  G↑ I↓
+  1998-05   Goldilocks             1.7%   +1.15%  -0.78pp  ✓  G↑ I↓
+  1998-06   Goldilocks             1.6%   +1.16%  -0.68pp  ✓  G↑ I↓
+  1998-07   Goldilocks             1.8%   +1.24%  -0.67pp  ✓  G↑ I↓
+  1998-08   Goldilocks             1.6%   +1.37%  -0.67pp  ✓  G↑ I↓
+  1998-09   Goldilocks             1.4%   +1.55%  -0.57pp  ✓  G↑ I↓
+  1998-10   Goldilocks             1.5%   +1.74%  -0.66pp  ✓  G↑ I↓
+  1998-11   Goldilocks             1.5%   +1.86%  -0.76pp  ✓  G↑ I↓
+  1998-12   Goldilocks             1.6%   +1.90%  -0.76pp  ✓  G↑ I↓
+  1999-01   Goldilocks             1.7%   +1.86%  -0.85pp  ✓  G↑ I↓
+  1999-02   Goldilocks             1.7%   +1.78%  -0.75pp  ✓  G↑ I↓
+  1999-03   Goldilocks             1.7%   +1.68%  -0.95pp  ✓  G↑ I↓
+  1999-04   Goldilocks             2.3%   +1.60%  -0.84pp  ✓  G↑ I↓
+  1999-05   Goldilocks             2.1%   +1.56%  -0.94pp  ✓  G↑ I↓
+  1999-06   Goldilocks             2.0%   +1.57%  -0.84pp  ✓  G↑ I↓
+  1999-07   Goldilocks             2.1%   +1.66%  -0.83pp  ✓  G↑ I↓
+  1999-08   Goldilocks             2.3%   +1.84%  -0.93pp  ✓  G↑ I↓
+  1999-09   Overheating            2.6%   +2.08%  -0.93pp  ✓  G↑ I↑
+  1999-10   Overheating            2.6%   +2.27%  -1.03pp  ✓  G↑ I↑
+  1999-11   Overheating            2.6%   +2.29%  -1.02pp  ✓  G↑ I↑
+  1999-12   Overheating            2.7%   +2.12%  -1.12pp  ✓  G↑ I↑
+  2000-01   Overheating            2.8%   +1.88%  -1.12pp  ✓  G↑ I↑
+  2000-02   Overheating            3.2%   +1.80%  -1.02pp  ✓  G↑ I↑
+  2000-03   Overheating            3.8%   +1.95%  -1.11pp  ✓  G↑ I↑
+
+  Mismatch detail (24 month(s)):
+    1995-01  actual=Stagflation         growth is below-trend (GDP gap=+0.19%, unemp gap=+0.21pp); CPI YoY=2.9% (above 2.5%) | growth is below-trend (GDP gap=+0.19%, unemp gap=+0.21pp)
+    1995-02  actual=Stagflation         growth is below-trend (GDP gap=+0.02%, unemp gap=+0.01pp); CPI YoY=2.9% (above 2.5%) | growth is below-trend (GDP gap=+0.02%, unemp gap=+0.01pp)
+    1995-03  actual=Stagflation         growth is below-trend (GDP gap=-0.16%, unemp gap=+0.02pp); CPI YoY=2.8% (above 2.5%) | growth is below-trend (GDP gap=-0.16%, unemp gap=+0.02pp)
+    1995-04  actual=Stagflation         growth is below-trend (GDP gap=-0.31%, unemp gap=+0.42pp); CPI YoY=3.1% (above 2.5%) | growth is below-trend (GDP gap=-0.31%, unemp gap=+0.42pp)
+    1995-05  actual=Stagflation         growth is below-trend (GDP gap=-0.39%, unemp gap=+0.23pp); CPI YoY=3.1% (above 2.5%) | growth is below-trend (GDP gap=-0.39%, unemp gap=+0.23pp)
+    1995-06  actual=Stagflation         growth is below-trend (GDP gap=-0.40%, unemp gap=+0.24pp); CPI YoY=3.0% (above 2.5%) | growth is below-trend (GDP gap=-0.40%, unemp gap=+0.24pp)
+    1995-07  actual=Stagflation         growth is below-trend (GDP gap=-0.36%, unemp gap=+0.34pp); CPI YoY=2.8% (above 2.5%) | growth is below-trend (GDP gap=-0.36%, unemp gap=+0.34pp)
+    1995-08  actual=Stagflation         growth is below-trend (GDP gap=-0.32%, unemp gap=+0.35pp); CPI YoY=2.6% (above 2.5%) | growth is below-trend (GDP gap=-0.32%, unemp gap=+0.35pp)
+    1995-09  actual=Stagflation         growth is below-trend (GDP gap=-0.30%, unemp gap=+0.26pp); CPI YoY=2.5% (above 2.5%) | growth is below-trend (GDP gap=-0.30%, unemp gap=+0.26pp)
+    1995-10  actual=Stagflation         growth is below-trend (GDP gap=-0.32%, unemp gap=+0.16pp); CPI YoY=2.7% (above 2.5%) | growth is below-trend (GDP gap=-0.32%, unemp gap=+0.16pp)
+    1995-11  actual=Stagflation         growth is below-trend (GDP gap=-0.37%, unemp gap=+0.27pp); CPI YoY=2.6% (above 2.5%) | growth is below-trend (GDP gap=-0.37%, unemp gap=+0.27pp)
+    1995-12  actual=Stagflation         growth is below-trend (GDP gap=-0.43%, unemp gap=+0.27pp); CPI YoY=2.5% (above 2.5%) | growth is below-trend (GDP gap=-0.43%, unemp gap=+0.27pp)
+    1996-01  actual=Stagflation         growth is below-trend (GDP gap=-0.43%, unemp gap=+0.28pp); CPI YoY=2.8% (above 2.5%) | growth is below-trend (GDP gap=-0.43%, unemp gap=+0.28pp)
+    1996-02  actual=Stagflation         growth is below-trend (GDP gap=-0.32%, unemp gap=+0.19pp); CPI YoY=2.7% (above 2.5%) | growth is below-trend (GDP gap=-0.32%, unemp gap=+0.19pp)
+    1996-03  actual=Stagflation         growth is below-trend (GDP gap=-0.09%, unemp gap=+0.19pp); CPI YoY=2.8% (above 2.5%) | growth is below-trend (GDP gap=-0.09%, unemp gap=+0.19pp)
+    1996-04  actual=Stagflation         growth is below-trend (GDP gap=+0.20%, unemp gap=+0.30pp); CPI YoY=2.8% (above 2.5%) | growth is below-trend (GDP gap=+0.20%, unemp gap=+0.30pp)
+    1996-05  actual=Stagflation         growth is below-trend (GDP gap=+0.43%, unemp gap=+0.30pp); CPI YoY=2.8% (above 2.5%) | growth is below-trend (GDP gap=+0.43%, unemp gap=+0.30pp)
+    1996-06  actual=Stagflation         growth is below-trend (GDP gap=+0.54%, unemp gap=+0.01pp); CPI YoY=2.8% (above 2.5%) | growth is below-trend (GDP gap=+0.54%, unemp gap=+0.01pp)
+    1996-07  actual=Stagflation         growth is below-trend (GDP gap=+0.56%, unemp gap=+0.21pp); CPI YoY=2.9% (above 2.5%) | growth is below-trend (GDP gap=+0.56%, unemp gap=+0.21pp)
+    1996-11  actual=Stagflation         growth is below-trend (GDP gap=+0.66%, unemp gap=+0.14pp); CPI YoY=3.3% (above 2.5%) | growth is below-trend (GDP gap=+0.66%, unemp gap=+0.14pp)
+    1996-12  actual=Stagflation         growth is below-trend (GDP gap=+0.58%, unemp gap=+0.14pp); CPI YoY=3.4% (above 2.5%) | growth is below-trend (GDP gap=+0.58%, unemp gap=+0.14pp)
+    1997-01  actual=Stagflation         growth is below-trend (GDP gap=+0.49%, unemp gap=+0.05pp); CPI YoY=3.0% (above 2.5%) | growth is below-trend (GDP gap=+0.49%, unemp gap=+0.05pp)
+    1997-02  actual=Stagflation         CPI YoY=3.0% (above 2.5%)
+    1997-03  actual=Stagflation         CPI YoY=2.8% (above 2.5%)
+
+------------------------------------------------------------------------
+  GFC  (2008-09 – 2009-06)    [PASS ✓]
+------------------------------------------------------------------------
+  Economic context:
+    Lehman collapse triggered the deepest post-war recession. Real GDP
+    fell 4% peak-to-trough; CPI went briefly negative in mid-2009 on
+    collapsing commodity prices. Growth below trend, inflation below
+    threshold.
+
+  Expected regime(s):  Deflationary Bust
+  Dominant regime:     Deflationary Bust (80% of months)  ✓
+  Months in period:    10
+  Months matching:     8 / 10 (80%)  ← ≥75% required to pass
+
+  Month-by-month assignments:
+  Date      Regime              CPI YoY  GDP gap   U gap  Match
+  ----------------------------------------------------------------
+  2008-09   Stagflation            5.0%   -1.29%  +1.05pp  ✗  G↓ I↑
+  2008-10   Stagflation            3.7%   -2.15%  +1.45pp  ✗  G↓ I↑
+  2008-11   Deflationary Bust      1.1%   -2.95%  +1.75pp  ✓  G↓ I↓
+  2008-12   Deflationary Bust     -0.0%   -3.62%  +2.25pp  ✓  G↓ I↓
+  2009-01   Deflationary Bust     -0.1%   -4.10%  +2.75pp  ✓  G↓ I↓
+  2009-02   Deflationary Bust      0.0%   -4.45%  +3.25pp  ✓  G↓ I↓
+  2009-03   Deflationary Bust     -0.5%   -4.69%  +3.65pp  ✓  G↓ I↓
+  2009-04   Deflationary Bust     -0.6%   -4.85%  +3.95pp  ✓  G↓ I↓
+  2009-05   Deflationary Bust     -1.0%   -4.97%  +4.35pp  ✓  G↓ I↓
+  2009-06   Deflationary Bust     -1.2%   -5.04%  +4.46pp  ✓  G↓ I↓
+
+  Mismatch detail (2 month(s)):
+    2008-09  actual=Stagflation         CPI YoY=5.0% (above 2.5%)
+    2008-10  actual=Stagflation         CPI YoY=3.7% (above 2.5%)
+
+------------------------------------------------------------------------
+  COVID Shock  (2020-02 – 2020-05)    [PASS ✓]
+------------------------------------------------------------------------
+  Economic context:
+    Lockdowns caused the sharpest GDP collapse on record (-31.4%
+    annualised Q2 2020). CPI briefly turned negative as oil prices
+    crashed. Growth massively below trend, inflation below threshold.
+
+  Expected regime(s):  Deflationary Bust
+  Dominant regime:     Deflationary Bust (100% of months)  ✓
+  Months in period:    4
+  Months matching:     4 / 4 (100%)  ← ≥75% required to pass
+
+  Month-by-month assignments:
+  Date      Regime              CPI YoY  GDP gap   U gap  Match
+  ----------------------------------------------------------------
+  2020-02   Deflationary Bust      2.3%   -1.03%  -0.96pp  ✓  G↓ I↓
+  2020-03   Deflationary Bust      1.5%   -3.76%  -0.06pp  ✓  G↓ I↓
+  2020-04   Deflationary Bust      0.3%   -6.52% +10.34pp  ✓  G↓ I↓
+  2020-05   Deflationary Bust      0.2%   -7.87%  +8.74pp  ✓  G↓ I↓
+
+------------------------------------------------------------------------
+  Inflation Surge  (2021-03 – 2022-09)    [PASS ✓]
+------------------------------------------------------------------------
+  Economic context:
+    Post-COVID fiscal stimulus and supply-chain disruptions pushed CPI
+    to 9.1% by mid-2022. Early in the window GDP gap was positive
+    (Overheating); by late 2022 growth was flagging as the Fed hiked
+    (Stagflation). Both acceptable.
+
+  Expected regime(s):  Overheating or Stagflation
+  Dominant regime:     Overheating (58% of months)  ✓
+  Months in period:    19
+  Months matching:     19 / 19 (100%)  ← ≥75% required to pass
+
+  Month-by-month assignments:
+  Date      Regime              CPI YoY  GDP gap   U gap  Match
+  ----------------------------------------------------------------
+  2021-03   Stagflation            2.7%   -0.17%  +1.65pp  ✓  G↓ I↑
+  2021-04   Stagflation            4.1%   +0.23%  +1.65pp  ✓  G↓ I↑
+  2021-05   Stagflation            4.9%   +0.50%  +1.35pp  ✓  G↓ I↑
+  2021-06   Stagflation            5.3%   +0.63%  +1.45pp  ✓  G↓ I↑
+  2021-07   Stagflation            5.2%   +0.72%  +0.95pp  ✓  G↓ I↑
+  2021-08   Stagflation            5.2%   +0.93%  +0.65pp  ✓  G↓ I↑
+  2021-09   Stagflation            5.3%   +1.29%  +0.25pp  ✓  G↓ I↑
+  2021-10   Stagflation            6.2%   +1.68%  +0.06pp  ✓  G↓ I↑
+  2021-11   Overheating            6.9%   +1.89%  -0.34pp  ✓  G↑ I↑
+  2021-12   Overheating            7.2%   +1.83%  -0.54pp  ✓  G↑ I↑
+  2022-01   Overheating            7.6%   +1.55%  -0.44pp  ✓  G↑ I↑
+  2022-02   Overheating            7.9%   +1.22%  -0.54pp  ✓  G↑ I↑
+  2022-03   Overheating            8.6%   +0.96%  -0.74pp  ✓  G↑ I↑
+  2022-04   Overheating            8.2%   +0.81%  -0.74pp  ✓  G↑ I↑
+  2022-05   Overheating            8.5%   +0.74%  -0.84pp  ✓  G↑ I↑
+  2022-06   Overheating            9.0%   +0.75%  -0.84pp  ✓  G↑ I↑
+  2022-07   Overheating            8.5%   +0.78%  -0.94pp  ✓  G↑ I↑
+  2022-08   Overheating            8.2%   +0.82%  -0.84pp  ✓  G↑ I↑
+  2022-09   Overheating            8.2%   +0.84%  -0.94pp  ✓  G↑ I↑
+
+========================================================================
+                              SUMMARY TABLE                             
+========================================================================
+
+  Period                  Expected                    Dominant                 Match %   Verdict
+  ------------------------------------------------------------------------------------------------
+  Oil Shock               Stagflation                 Stagflation ✓                 56%    FAIL ✗
+  Volcker Recession       Stagflation                 Stagflation ✓                100%    PASS ✓
+  Tech Expansion          Goldilocks or Overheating   Goldilocks ✓                  62%    FAIL ✗
+  GFC                     Deflationary Bust           Deflationary Bust ✓           80%    PASS ✓
+  COVID Shock             Deflationary Bust           Deflationary Bust ✓          100%    PASS ✓
+  Inflation Surge         Overheating or Stagflation  Overheating ✓                100%    PASS ✓
+
+  Overall: 4/6 periods pass (dominant regime in expected set and ≥75% months match)
+
+========================================================================
+                            METHODOLOGY NOTES                           
+========================================================================
+
+  Signal legend in month-by-month tables:
+    G↑ = growth above trend  (GDP gap > 0 AND unemp gap < 0)
+    G↓ = growth below trend  (GDP gap ≤ 0 OR unemp gap ≥ 0)
+    I↑ = inflation above threshold  (CPI YoY > 2.5%)
+    I↓ = inflation below threshold  (CPI YoY ≤ 2.5%)
+
+  Regime mapping:
+    G↑ + I↓ = Goldilocks        G↑ + I↑ = Overheating
+    G↓ + I↑ = Stagflation       G↓ + I↓ = Deflationary Bust
+
+  Pass criterion: dominant regime ∈ expected set AND ≥75% of months
+  in expected set. The 75% threshold allows for boundary months at
+  the start/end of an episode without failing the whole period.
+
+========================================================================

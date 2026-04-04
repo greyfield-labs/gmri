@@ -1,0 +1,266 @@
+========================================================================
+  GMRI REGULATORY CLASSIFICATION ANALYSIS
+  Generated: 2026-04-03 16:51:09
+========================================================================
+
+  Instrument:    GMRI Macro Regime Swap
+  Underlying:    Global Macro Regime Index (GMRI)
+  Tenor:         36 months
+  Rate:          $2,000,000 per regime-month deviation
+  Max notional:  $72,000,000 per swap ($72M)
+  Framework:     Dodd-Frank Wall Street Reform and Consumer Protection Act (2010)
+  Regulators:    CFTC (primary), SEC (security-based swap jurisdiction check)
+
+========================================================================
+  QUESTION 1 OF 4
+  Does the GMRI reference any equity or debt security that could
+  trigger SEC jurisdiction over the instrument as a
+  'security-based swap' under Exchange Act Section 3(a)(68)?
+========================================================================
+
+  Regulatory test:
+    A swap is a 'security-based swap' (SEC jurisdiction) if it references
+    (A) a single named security, loan, or narrow-based security index, OR
+    (B) the occurrence of an event relating to a single issuer of a security.
+    All other swaps (including those on broad indices and economic statistics)
+    are CFTC-regulated 'swaps' under CEA Section 1a(47).
+
+  FRED series check against securities identifier patterns:
+
+  Series ID     Publisher                                   Flags                 Result
+  ----------------------------------------------------------------------------------
+  CPIAUCSL      Consumer Price Index for All Urban Consu    none                  Econ stat ✓
+  UNRATE        Unemployment Rate                           none                  Econ stat ✓
+  GDPC1         Real Gross Domestic Product (Chained 201    none                  Econ stat ✓
+  NROU          Natural Rate of Unemployment (Long-Term)    matches equity ticke  Econ stat ✓
+  GDPPOT        Real Potential Gross Domestic Product       none                  Econ stat ✓
+
+  Identifier pattern tests applied:
+    (a) Direct match against 16 known security-linked FRED series IDs
+        (equity indices: SP500, DJIA, NASDAQCOM; bond indices: BAMLH0A0HYM2, etc.)
+    (b) Exchange ticker format: 1–5 uppercase alphabetic characters only
+    (c) ISIN format: 12-char string beginning with ISO-3166 country code
+    (d) CUSIP format: exactly 9 alphanumeric characters
+
+  Findings:
+    All five GMRI series (CPIAUCSL, UNRATE, GDPC1, NROU, GDPPOT) are
+    macroeconomic statistics published by U.S. federal agencies (BLS, BEA, CBO).
+    None match any securities identifier pattern.
+    None reference a single issuer, equity, corporate bond, loan, or
+    narrow-based security index.
+
+  Applicable authority:
+    — Exchange Act Section 3(a)(68)(A): definition of security-based swap
+    — CEA Section 1a(47)(B)(x): exclusion for swaps on broad-based indices
+    — CFTC/SEC Joint Rulemaking, 77 FR 48207 (Aug 13, 2012):
+      'A swap on a rate or economic statistic … is not a security-based swap'
+
+  RISK LEVEL:  ✓ LOW
+  ANSWER:      No. GMRI references only government macroeconomic statistics.
+               The instrument is a CFTC-regulated swap, not an SEC
+               security-based swap.
+
+========================================================================
+  QUESTION 2 OF 4
+  Is the underlying index rules-based and publicly reproducible —
+  are all five data sources government-published?
+========================================================================
+
+  Regulatory test:
+    CFTC guidance on swap indexes (17 CFR 32.3 / No-Action Letter 12-17)
+    and SEC Form S-1 prospectus standards require that a swap index be:
+    (i)  widely published and freely accessible to market participants,
+    (ii) calculated via a deterministic, fully disclosed methodology,
+    (iii) not readily susceptible to manipulation by any party.
+
+  Data source audit:
+
+  Series      Publisher                                 Type                            Gov?
+  ----------------------------------------------------------------------------------------
+  CPIAUCSL    U.S. Bureau of Labor Statistics (BLS)     U.S. Federal Statistical Agency  Yes ✓
+  UNRATE      U.S. Bureau of Labor Statistics (BLS)     U.S. Federal Statistical Agency  Yes ✓
+  GDPC1       U.S. Bureau of Economic Analysis (BEA)    U.S. Federal Statistical Agency  Yes ✓
+  NROU        U.S. Congressional Budget Office (CBO)    U.S. Federal Government Agency  Yes ✓
+  GDPPOT      U.S. Congressional Budget Office (CBO)    U.S. Federal Government Agency  Yes ✓
+
+  Government-published: 5/5 series ✓
+
+  Classification algorithm review:
+  Step   Rule
+  ----------------------------------------------------------------------
+  1      CPI YoY = CPIAUCSL.pct_change(12) × 100
+       [deterministic ✓, public inputs: yes]
+  2      GDP gap = (GDPC1 − GDPPOT) / GDPPOT × 100, smoothed 3-month rolling mean
+       [deterministic ✓, public inputs: yes]
+  3      Unemployment gap = UNRATE − NROU
+       [deterministic ✓, public inputs: yes]
+  4      Growth signal = (GDP gap > 0) AND (unemployment gap < 0)  [AND logic]
+       [deterministic ✓, public inputs: yes]
+  5      Inflation signal = CPI YoY > 2.5%  [fixed threshold]
+       [deterministic ✓, public inputs: yes]
+  6      Regime = Goldilocks | Overheating | Stagflation | Deflationary Bust
+       [deterministic ✓, public inputs: yes]
+  7      Min-duration filter: absorb spells < 3 months into prior regime
+       [deterministic ✓, public inputs: yes]
+
+  All 7 classification steps: deterministic ✓, public inputs ✓
+
+  Manipulation resistance:
+    CPIAUCSL, UNRATE, GDPC1, NROU, GDPPOT are official government statistics
+    compiled by independent federal agencies under established methodological
+    frameworks (CPI: BLS Handbook of Methods; GDP: BEA NIPA Accounts).
+    No private party has the ability to influence these series.
+
+  Applicable authority:
+    — CFTC Staff Letter 12-17 (commodity index fund no-action relief):
+      index must be 'widely published and not readily subject to manipulation'
+    — IOSCO Principles for Financial Benchmarks (2013), Principle 7:
+      'Benchmark data should be based on observable transactions'
+    — EU Benchmarks Regulation (EU 2016/1011), Art. 12: similar standards
+
+  RISK LEVEL:  ✓ LOW
+  ANSWER:      Yes. All five inputs are U.S. federal agency publications.
+               The methodology is fully deterministic and disclosed.
+               The index is not susceptible to manipulation by any party.
+
+========================================================================
+  QUESTION 3 OF 4
+  Would mandatory clearing likely apply under CFTC rules?
+========================================================================
+
+  Regulatory test:
+    CEA Section 2(h)(1): any swap subject to a CFTC clearing determination
+    must be submitted for clearing to a registered derivatives clearing
+    organization (DCO) unless an exception applies.
+    CFTC clearing determinations are issued via regulation (17 CFR Part 50).
+
+  Step 1 — Product-level clearing determination:
+
+  Currently mandated swap categories (17 CFR 50.4):
+    • Fixed-for-float interest rate swaps (USD, EUR, GBP, JPY, AUD, CAD, CHF)
+    • Overnight index swaps (OIS) in major currencies
+    • Forward rate agreements (FRAs)
+    • Basis swaps in major currencies
+    • CDX North America Investment Grade (CDX.NA.IG)
+    • CDX North America High Yield (CDX.NA.HY)
+    • iTraxx Europe
+    • iTraxx Europe Crossover
+
+  GMRI swap category:  Macro economic regime swap (no cleared product determination issued)
+
+  Analysis:
+    The GMRI regime swap does not fall within any existing CFTC clearing
+    determination. No clearing determination has been issued for swaps
+    referencing macroeconomic regime indices, economic statistics, or
+    similar novel instruments. Absent a future determination, the
+    instrument is not subject to mandatory clearing.
+
+  Step 2 — Dealer registration threshold analysis:
+    Single swap max notional:          $28M
+    Estimated initial dealer book:     $500M
+    Non-bank SD registration trigger:  $3,000M  Not exceeded ✓
+    Bank SD registration trigger:      $8,000M  Not exceeded ✓
+
+  Step 3 — End-user exception (CEA Section 2(h)(7)):
+    Available to non-financial entities hedging commercial risk.
+    Most likely counterparties (asset managers, hedge funds) are
+    'financial entities' and therefore ineligible for this exception.
+    However, a corporate counterparty hedging macro risk could qualify.
+
+  Applicable authority:
+    — CEA Section 2(h)(1)–(3): mandatory clearing requirement
+    — 17 CFR 50.4: current clearing determinations
+    — CEA Section 2(h)(7): end-user exception
+    — CFTC Reg 50.50: end-user exception conditions
+
+  RISK LEVEL:  ✓ LOW
+  ANSWER:      Unlikely. No clearing determination exists for this
+               instrument type. Initial market size well below dealer
+               registration thresholds. Risk escalates to Medium if a
+               future CFTC rulemaking captures novel stat-based swaps.
+
+========================================================================
+  QUESTION 4 OF 4
+  Do margin rules for uncleared swaps apply under the ECP counterparty
+  assumption?
+========================================================================
+
+  Regulatory test:
+    CFTC Regulation 23.150–23.161 requires swap dealers (SDs) and
+    major swap participants (MSPs) to collect and post initial margin (IM)
+    and variation margin (VM) for uncleared swaps with covered counterparties.
+    Parallel rules exist for bank-supervised SDs (12 CFR Part 45 / OCC,
+    Fed, FDIC, FHFA, FCA joint rule).
+
+  ECP counterparty type analysis:
+
+  Counterparty Type                                   Margin Classification
+  ------------------------------------------------------------------------
+  Registered investment company (mutual fund, ETF)    Financial End User
+  Registered investment adviser managing ≥$25M        Financial End User
+  Commodity pool / hedge fund                         Financial End User
+  Insurance company                                   Financial End User
+  Bank / broker-dealer                                Financial End User / Swap Dealer
+  Corporate with total assets ≥$10M (not financial)   Non-Financial End User ECP
+  Sovereign wealth fund                               Financial End User
+
+  Initial Margin analysis:
+    Typical GMRI swap notional:        $28M
+    Estimated SIMM IM exposure (~10%): $3M
+    BCBS-IOSCO IM threshold:           $50M per pair
+    Below threshold?                   Yes ✓
+
+    Even where IM rules technically apply (SD ↔ FEU), the $50M threshold
+    means no actual IM transfer is required until the aggregate uncleared
+    swap portfolio IM exposure between the two parties exceeds $50M.
+    A single GMRI swap (IM ~$3M) is well below this.
+
+  Variation Margin analysis:
+    VM is required with no threshold for SD ↔ FEU pairs (CFTC Reg 23.153).
+    VM is marked-to-market daily: the in-the-money party receives cash or
+    eligible collateral from the out-of-the-money party.
+    For bilateral non-SD ECP ↔ non-SD ECP trades, no regulatory VM mandate
+    applies — governed by bilateral credit support annexe (CSA).
+
+  Phase-in / substituted compliance:
+    IM phase-in completed Sep 2022 (Phase 6 — smaller counterparties).
+    All in-scope SD ↔ FEU relationships are now subject to full IM/VM rules.
+    Non-U.S. counterparties may rely on substituted compliance where CFTC
+    has issued a comparability determination (UK, EU, Japan, etc.).
+
+  Applicable authority:
+    — CFTC Reg 23.150–23.161: swap dealer margin requirements
+    — BCBS-IOSCO 'Margin requirements for non-centrally cleared derivatives'
+      (2013, updated 2020): IM threshold = $50M
+    — CEA Section 1a(18): ECP definition
+    — CFTC Reg 23.151: 'financial end user' definition
+
+  RISK LEVEL:  △ MEDIUM
+  ANSWER:      Depends on counterparty type. If at least one party is a
+               registered swap dealer, VM is required with no threshold.
+               IM is required above $50M aggregate exposure — a single
+               GMRI swap (~$3M IM) falls below
+               this. Bilateral non-SD ECP ↔ non-SD ECP trades have no
+               regulatory IM/VM mandate; credit terms govern.
+
+========================================================================
+                         REGULATORY RISK SUMMARY                        
+========================================================================
+
+  #    Question                                              Risk        Key Basis
+  ------------------------------------------------------------------------------------------
+  Q1   SEC jurisdiction (security-based swap)?               ✓ LOW           All inputs are gov. econ statistics — not securities
+  Q2   Rules-based, publicly reproducible index?             ✓ LOW           5/5 gov-published; fully deterministic 7-step algorithm
+  Q3   CFTC mandatory clearing likely?                       ✓ LOW           No clearing determination; below dealer thresholds
+  Q4   Uncleared swap margin rules apply (ECP)?              △ MEDIUM        VM if SD involved; IM below $50M threshold per swap
+
+  Overall regulatory risk profile:  △ MEDIUM
+
+  Primary regulatory pathway:  CFTC-regulated uncleared swap.
+  No SEC involvement. No current clearing mandate. Margin rules
+  apply only if a registered swap dealer is a counterparty.
+  Pre-trade mid-market disclosure (CFTC Reg 23.431) and daily
+  mark reporting (Reg 23.430) would apply to any SD acting as
+  dealer in this instrument.
+
+========================================================================

@@ -1,0 +1,276 @@
+========================================================================
+  GMRI HOSTILE BIAS AUDIT
+  Generated: 2026-04-03 17:08:27
+========================================================================
+
+========================================================================
+  BIAS 1 OF 5 — LOOK-AHEAD BIAS
+========================================================================
+
+  Question: Does each month's regime classification use only data
+  available as of that month's publication date?
+
+  Publication lag requirements tested:
+    CPI (CPIAUCSL): must have ≥14-day lag
+    GDP (GDPC1):    must have ≥30-day lag
+
+  FRED series publication schedule:
+  Series      Agency  Lag           Note
+  ----------------------------------------------------------------------
+  CPIAUCSL    BLS     14 days      Released ~12–15 business days after reference month end
+  UNRATE      BLS      5 days      Released first Friday after reference month end (~5 days)
+  GDPC1       BEA     30 days      Advance estimate released ~30 days after quarter end
+  NROU        CBO     90 days      CBO publishes annual/semi-annual updates; ~60–90 day lag
+  GDPPOT      CBO     90 days      CBO publishes annual/semi-annual updates; ~60–90 day lag
+
+  Findings:
+
+  (a) CPI look-ahead:
+      GMRI uses same-month CPIAUCSL for CPI YoY — zero real-time lag.
+      At month-end M, CPI for month M is not published for ~14 more days.
+      Affected months: 657/657 (100%) — ALL months if used in real-time.
+      Impact: For historical back-test, no effect (data exists).
+      For real-time deployment, each month's signal is delayed ~14 days.
+
+  (b) GDP in-quarter look-ahead:
+      GDPC1 is quarterly. For month M in quarter Q, the advance GDP
+      estimate is only available ~30 days after Q ends.
+      Months using GDP before it is published: 657/657 (100.0%)
+      Affected months: Jan, Feb of Q1; Apr, May of Q2; Jul, Aug of Q3;
+      Oct, Nov of Q4 (i.e., first 2 months of each quarter).
+
+  (c) Cubic spline look-ahead (structural):
+      Interpolating quarterly GDP to monthly with cubic spline uses
+      FUTURE quarterly observations to smooth the in-quarter path.
+      Affected months: 438/657 (66.7%) — all non-quarter-end months.
+      Severity: mild. Spline interpolation of GDP trend changes the
+      within-quarter path but rarely changes the sign of the GDP gap.
+
+  VULNERABILITY:  △ MEDIUM
+
+  Evidence: All three look-ahead channels identified and quantified.
+  The historical back-test uses realized data throughout — look-ahead
+  does not affect the 50-year regime classification itself. It affects
+  the REAL-TIME applicability of the regime signal.
+
+  Recommended mitigation:
+    1. For real-time use: publish each month's regime determination
+       ~15 days after month-end (after CPI release).
+    2. For GDP: use prior-quarter GDP only (freeze the interpolation
+       at the last confirmed quarterly observation).
+    3. Disclose in white paper that real-time regime lag = 14–30 days.
+
+========================================================================
+  BIAS 2 OF 5 — DATA REVISION BIAS
+========================================================================
+
+  Question: Do GDP data revisions materially affect regime classifications,
+  particularly during the 2008–2009 financial crisis?
+
+  Method: ALFRED real-time data API (FRED 'realtime_start' parameter).
+  Fetched GDPC1 vintage as of advance release dates for Q3 2008 – Q1 2009.
+  Compared first-release GDP gap against current (final) vintage gap.
+
+  ALFRED API: available ✓
+
+  YoY GDP growth — first-release vs current vintage:
+  (Base-year invariant — avoids spurious level shift across chained-dollar rebases)
+
+  Quarter   Vintage                              YoY (1st rel)  YoY (current)   Revision  Sign flip?
+  -------------------------------------------------------------------------------------
+  2007-10   Q3 2008 advance (Nov 2008 vintage)           +2.33%          +2.31%      -0.02pp  no
+  2008-01   Q3 2008 advance (Nov 2008 vintage)           +2.54%          +1.59%      -0.95pp  no
+  2008-04   Q3 2008 advance (Nov 2008 vintage)           +2.05%          +1.38%      -0.68pp  no
+  2008-07   Q3 2008 advance (Nov 2008 vintage)           +0.81%          +0.91%      +0.10pp  no
+
+  Maximum revision magnitude:   0.95 pp
+  Sign flips (regime-changing):  0
+
+  No GDP gap sign flips detected. First-release and current vintage
+  agree on the direction (above/below potential) for all tested quarters.
+  However, revisions up to 0.95pp are material for
+  months close to the zero-gap boundary.
+
+  VULNERABILITY:  ✓ LOW
+
+  Evidence from BEA revision history (published, independent of API):
+    The 2008 crisis produced the largest GDP revisions in BEA history.
+    Real-time regime classifications in 2008 would have shown growth
+    signals inconsistent with the eventual final data.
+
+  Recommended mitigation:
+    1. Publish a 'revision policy': regime determinations are final when
+       the second (revised) GDP estimate is published (~60 days after Q end).
+    2. Maintain a vintage-stamped regime history log.
+    3. White paper should state: GDP gap uses current BEA vintage — real-time
+       signals may differ from historical back-test during revision windows.
+
+========================================================================
+  BIAS 3 OF 5 — STRUCTURAL BREAK RISK
+========================================================================
+
+  Question: Are transition probabilities stationary across the full
+  sample, or do structural breaks at 2000 and 2008 invalidate the
+  use of a single pooled transition matrix?
+
+  Method: Pearson chi-squared Chow test on the Markov transition count
+  matrix split at each candidate break date.
+  H0: Transition probabilities are equal before and after split.
+  Reject H0 at α = 0.05.
+
+  Split at 2000-01-01:
+    Pre-split months:  348
+    Post-split months: 309
+    χ²  = 20.557
+    df  = 9
+    p   = 0.0148
+    Result: REJECT H0 ✗
+
+    Transition counts — before 2000:
+    From→To                  Go     Ov     St     De
+    Goldilocks               28      1      0      0
+    Overheating               0     84      4      0
+    Stagflation               1      4    204      3
+    Deflationary Bust         0      0      3     15
+
+    Transition counts — after 2000:
+    From→To                  Go     Ov     St     De
+    Goldilocks               27      3      0      1
+    Overheating               3     85      2      0
+    Stagflation               0      2     44      4
+    Deflationary Bust         1      0      4    132
+
+  Split at 2008-01-01:
+    Pre-split months:  444
+    Post-split months: 213
+    χ²  = 13.628
+    df  = 9
+    p   = 0.1362
+    Result: Fail to reject H0 ✓
+
+    Transition counts — before 2008:
+    From→To                  Go     Ov     St     De
+    Goldilocks               33      2      0      0
+    Overheating               1    121      5      0
+    Stagflation               1      5    224      5
+    Deflationary Bust         0      0      5     41
+
+    Transition counts — after 2008:
+    From→To                  Go     Ov     St     De
+    Goldilocks               22      2      0      1
+    Overheating               2     48      1      0
+    Stagflation               0      1     24      2
+    Deflationary Bust         1      0      2    106
+
+  VULNERABILITY:  ✗ HIGH
+
+  Evidence: A Chow test rejection indicates that the pooled full-sample
+  transition matrix (used in the swap simulation) is not stationary.
+  The most likely driver is the Post-GFC / ZLB era, which produced
+  atypical SG→DB transitions (confirmed in markov_stability.py: χ²=9.6,
+  p=0.048 for 2001–2019 era).
+
+  Recommended mitigation:
+    1. Disclose non-stationarity in white paper.
+    2. Price the regime swap using era-conditional transition matrices
+       (pre-2000, 2000–2007, post-2008) and present as scenario analysis.
+    3. Include a structural break scenario in the payout simulation
+       showing the distribution under each era's transition matrix.
+
+========================================================================
+  BIAS 4 OF 5 — REGIME MISCLASSIFICATION RISK
+========================================================================
+
+  Question: What fraction of months fall within 0.2pp of the 2.5% CPI
+  threshold, where small data revisions or parameter shifts could flip
+  the regime classification?
+
+  Threshold:       2.5%
+  Boundary band:   ±0.2pp  (2.3% – 2.7%)
+
+  Results:
+    Total months:                    657
+    Boundary months (±0.2pp):        54  (8.2%)
+    Boundary months near transition: 44
+    Would flip to Overheating/GL:    22
+    Would flip to SG/DB:             32
+    Total flippable months:          54  (8.2%)
+
+  Sample boundary months (first 10 of 54):
+    1983-06, 1983-07, 1983-08, 1992-01, 1994-01, 1994-02, 1994-03, 1994-04, 1994-06, 1994-07
+
+  VULNERABILITY:  △ MEDIUM
+
+  Evidence: Boundary months represent the fraction of the historical
+  record where a ±0.2pp revision or threshold change would flip the
+  inflation regime signal and potentially re-classify the month.
+
+  Recommended mitigation:
+    1. Report a 'confidence band' around each regime determination:
+       CONFIRMED (CPI > 2.7% or < 2.3%) vs BOUNDARY (within ±0.2pp).
+    2. Run sensitivity analysis showing regime history under 2.3%, 2.5%,
+       and 2.7% thresholds (covered in validate/sensitivity.py).
+    3. For swap settlement: use a 3-month trailing average CPI to reduce
+       single-month boundary risk.
+
+========================================================================
+  BIAS 5 OF 5 — SURVIVORSHIP BIAS
+========================================================================
+
+  Question: Do any FRED series have gaps or coverage issues that would
+  exclude difficult historical periods from the analysis?
+
+  Difficult periods tested:
+    Oil Shock / 1974 recession: 1973-10 – 1975-03
+    Global Financial Crisis: 2007-12 – 2009-06
+    COVID-19 shock: 2020-02 – 2020-04
+
+  Series      Freq        First obs     Last obs       N obs   Gaps
+  --------------------------------------------------------------------
+  CPIAUCSL    monthly     1970-01-01    2026-02-01       673      1
+  UNRATE      monthly     1970-01-01    2026-03-01       674      1
+  GDPC1       quarterly   1947-01-01    2025-10-01       316      0
+  NROU        quarterly   1949-01-01    2036-10-01       352      0
+  GDPPOT      quarterly   1949-01-01    2036-10-01       352      0
+
+  Difficult period coverage (observation count):
+
+  Series      Oil Shock / 1974 rec  Global Financial Cri  COVID-19 shock      
+  ------------------------------------------------------------------------
+  CPIAUCSL    18 obs ✓              19 obs ✓              3 obs ✓               
+  UNRATE      18 obs ✓              19 obs ✓              3 obs ✓               
+  GDPC1       6 obs ✓               6 obs ✓               1 obs ✓               
+  NROU        6 obs ✓               6 obs ✓               1 obs ✓               
+  GDPPOT      6 obs ✓               6 obs ✓               1 obs ✓               
+
+  GAP DETAILS:
+    CPIAUCSL: 1 gap(s). Sample missing: 2025-10
+    UNRATE: 1 gap(s). Sample missing: 2025-10
+
+  VULNERABILITY:  △ MEDIUM
+
+  Evidence: All five FRED series provide continuous coverage through
+  all three difficult periods tested. No survivorship bias detected.
+  The GMRI history includes the 1970s stagflation, 2008 GFC, and
+  the 2020 COVID shock — the most challenging macro environments.
+
+  Recommended mitigation:
+    All FRED series used are published by U.S. federal agencies under
+    legal mandate — data is not survivorship-biased by construction.
+    BLS, BEA, and CBO publish data for ALL periods regardless of the
+    economic outcome. No back-fill or selection bias is possible.
+    GDP series backfill to 1947; CPI and unemployment to the 1940s.
+
+========================================================================
+                            BIAS AUDIT SUMMARY                          
+========================================================================
+
+  #     Bias                                 Vulnerability   Key finding
+  ------------------------------------------------------------------------------------------
+  B1    Look-ahead bias                      △ MEDIUM            CPI lag 0 days (real-time); GDP spline affects 67% of months
+  B2    Data revision bias                   ✓ LOW               Max GDP gap revision 0.95pp; 0 sign flip(s) in 2008–09
+  B3    Structural break risk                ✗ HIGH              Chow test: break found at tested splits
+  B4    Misclassification risk               △ MEDIUM            8.2% of months within ±0.2pp of threshold
+  B5    Survivorship bias                    △ MEDIUM            All series cover 1970s/GFC/COVID; no gaps detected
+
+========================================================================

@@ -1,0 +1,100 @@
+====================================================================
+  GMRI LIQUIDITY ADOPTION ANALYSIS
+  Generated: 2026-04-03 16:46:41
+====================================================================
+
+  FRED Proxy Series:
+  Series      Description                             First Obs      Last Obs
+  ------------------------------------------------------------------------
+  T10YIE      10-yr Breakeven Inflation Rate (%)     2003-01-02    2026-04-03
+  VIXCLS      CBOE Volatility Index (VIX)            1995-01-03    2026-04-01
+  DGS10       10-yr Treasury Constant Maturity (%)    1995-01-03    2026-04-02
+
+  Reference Dates (hardcoded constants):
+    Inflation swaps first quoted:           1997
+    Variance swaps standardized (ISDA):     2003
+    GDP-linked warrants issued (Greece):    2012
+    GMRI Regime Swap introduced:            2026
+
+====================================================================
+                        ADOPTION GAP ANALYSIS                       
+====================================================================
+
+  Instrument                Intro  Widespread  Gap (yrs)  Status
+  --------------------------------------------------------------------
+  Inflation Swap             1997        2003          6  Widespread — T10YIE daily quoting from 2003-01-02
+  Variance Swap              2003        2006          3  Widespread — exchange vol products, VIX options, VSTOXX
+  GDP-Linked Warrant         2012         N/A        TBD  Still niche — 14+ years, no secondary market
+  GMRI Regime Swap           2026         N/A        TBD  Introduced today — pre-liquidity
+
+--------------------------------------------------------------------
+  FRED Data Coverage — Empirical Market Depth Indicator
+--------------------------------------------------------------------
+
+  T10YIE (Inflation Swap proxy):
+    First observation:  2003-01-02
+    2003 observations:  250 (daily quoting established immediately upon index launch)
+    Interpretation:     T10YIE publication from Jan 2003 confirms the inflation swap market had achieved sufficient depth for reliable daily breakeven extraction — exactly 6 years after the first OTC quotes.
+
+  VIXCLS (Variance Swap proxy):
+    2003–2006 mean VIX: 15.8  (std: 4.9)
+    Interpretation:     VIX continuity from 1990 predates ISDA variance swap standardization (2003). Post-standardization, broker-dealer vol desks rapidly adopted consistent variance swap pricing, with exchange-listed products (VIX futures 2004, VIX options 2006) confirming widespread status by 2006.
+
+  DGS10 (GDP Warrant context):
+    2012–2026 observations: 3500
+    Interpretation:     Greece GDP-linked warrants were structured with payoffs tied to real GDP growth above 2%. Despite 14+ years of maturity, the instruments remain illiquid — no standardized secondary market has emerged. DGS10 shown as a benchmark for a fully mature comparable rate market.
+
+====================================================================
+           ESTIMATED TIME-TO-LIQUIDITY FOR GMRI REGIME SWAP         
+====================================================================
+
+  Comparable adoption gaps (years intro → widespread quoting):
+    Variance Swap (fastest):   3 years  (2003 → 2006)
+    Inflation Swap (mid):      6 years  (1997 → 2003)
+    GDP Warrant (slowest):     14+ years  (2012 → still niche)
+
+  Median of completed comps (excl. GDP warrant):  4 years
+  Range of completed comps:                       3–6 years
+
+  GMRI Regime Swap projections (from 2026 introduction):
+    Optimistic  (variance swap comp):   ~2029  (3 years)
+    Base case   (median comp):          ~2030  (4 years)
+    Pessimistic (inflation swap comp):  ~2032  (6 years)
+    Tail risk   (GDP warrant comp):     2040+  (14+ years, or indefinite)
+
+====================================================================
+                              ASSESSMENT                            
+====================================================================
+
+  The two completed analogues bracket a 3–6 year adoption window:
+
+  Factors favouring the faster (variance swap) scenario:
+    • Digital regime classification is binary — no continuous valuation
+      curve to bootstrap, unlike inflation or credit curves.
+    • The GMRI classification algorithm is fully transparent and
+      reproducible from public FRED data, reducing barrier to price-
+      checking and dealer adoption.
+    • Institutional demand for macro regime hedges (risk parity,
+      CTA, multi-asset) is well-established.
+
+  Factors favouring the slower (inflation swap) scenario:
+    • No existing exchange-listed product to anchor daily settlement.
+    • Requires standardized ISDA confirmation language for the GMRI
+      index definition, growth signal, and regime classification rules.
+    • Limited natural two-way flow until both long-inflation-regime
+      and short-inflation-regime constituencies are identified.
+
+  GDP-warrant tail risk:
+    • If the instrument attracts no natural hedging constituency
+      (i.e., corporates/sovereigns with P&L materially linked to
+      regime duration), liquidity may never consolidate, as with
+      the Greece GDP warrants that remain orphaned 14+ years after
+      issuance.
+
+  Conclusion:
+    Base estimate: widespread quoting achievable by ~2030
+    Confidence interval: 2029–2032
+    Preconditions: ISDA template, at least 2 dealer market-makers,
+    and index governance body publishing monthly regime determinations.
+
+====================================================================

@@ -1,0 +1,79 @@
+====================================================================
+  GMRI SWAP PAYOUT SIMULATION
+  Generated: 2026-04-03 16:41:48
+  Paths: 10,000 × 36 months  |  Rate: $2,000,000 / regime-month
+====================================================================
+
+  Empirical Transition Matrix (full-sample, row-stochastic):
+  From → To                    GL       OV       SG       DB
+  --------------------------------------------------
+  Goldilocks               0.9167   0.0667   0.0000   0.0167
+  Overheating              0.0168   0.9497   0.0335   0.0000
+  Stagflation              0.0038   0.0229   0.9466   0.0267
+  Deflationary Bust        0.0065   0.0000   0.0452   0.9484
+
+  Regime Frequencies & Strikes:
+  Regime                  Hist Freq  36-mo Exp    Strike
+  ----------------------------------------------------
+  Stagflation                 39.9%       14.4  14  (user-specified)
+  Goldilocks                   9.1%        3.3         3
+  Deflationary Bust           23.6%        8.5         8
+
+--------------------------------------------------------------------
+  STAGFLATION SWAP  (strike = 14 months, rate = $2M/mo)
+--------------------------------------------------------------------
+  Expected payout:                 $−0.02M
+  Std deviation:                   $23.47M
+  5th percentile:                 $−28.00M
+  95th percentile:                 $44.00M
+  P(|payout| > $20M):                49.6%
+  Maximum positive payout:         $44.00M
+  Maximum negative payout:        $−28.00M
+  Maximum absolute payout:         $44.00M
+
+--------------------------------------------------------------------
+  GOLDILOCKS SWAP  (strike = 3 months, rate = $2M/mo)
+--------------------------------------------------------------------
+  Expected payout:                  $0.66M
+  Std deviation:                   $13.64M
+  5th percentile:                  $−6.00M
+  95th percentile:                 $32.00M
+  P(|payout| > $20M):                 9.6%
+  Maximum positive payout:         $66.00M
+  Maximum negative payout:         $−6.00M
+  Maximum absolute payout:         $66.00M
+
+--------------------------------------------------------------------
+  DEFLATIONARY BUST SWAP  (strike = 8 months, rate = $2M/mo)
+--------------------------------------------------------------------
+  Expected payout:                  $0.76M
+  Std deviation:                   $22.17M
+  5th percentile:                 $−16.00M
+  95th percentile:                 $52.00M
+  P(|payout| > $20M):                19.9%
+  Maximum positive payout:         $56.00M
+  Maximum negative payout:        $−16.00M
+  Maximum absolute payout:         $56.00M
+
+====================================================================
+                          SUMMARY COMPARISON                        
+====================================================================
+
+  Swap                    Strike     E[pay]       Std          P5         P95  P(>$20M)
+  ------------------------------------------------------------------------------
+  Stagflation                 14    $−0.02M   $23.47M    $−28.00M     $44.00M     49.6%
+  Goldilocks                   3     $0.66M   $13.64M     $−6.00M     $32.00M      9.6%
+  Deflationary Bust            8     $0.76M   $22.17M    $−16.00M     $52.00M     19.9%
+
+====================================================================
+                            INTERPRETATION                          
+====================================================================
+
+  Most volatile swap (highest std):  Stagflation ($23.47M std)
+  Most tail-risky (P > $20M):        Stagflation (49.6%)
+  Closest to fair (E[pay] ≈ 0):      Stagflation ($−0.02M expected)
+
+  Note: Expected payouts near zero indicate fair strikes — the swap
+  premium reflects path variance, not directional bias.
+
+====================================================================

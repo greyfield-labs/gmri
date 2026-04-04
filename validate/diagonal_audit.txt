@@ -1,0 +1,101 @@
+====================================================================
+  GMRI DIAGONAL TRANSITION AUDIT
+  Generated: 2026-04-03 16:14:56
+====================================================================
+
+  2×2 Regime Matrix:
+              │ Inflation ≤ 2.5%      │ Inflation > 2.5%
+  ────────────┼───────────────────────┼────────────────────
+  Growth ↑    │  Goldilocks   (GL)    │  Overheating  (OV)
+  Growth ↓    │  Deflationary (DB)    │  Stagflation  (SG)
+
+  Audited transitions:
+    1. GL → SG  (Goldilocks → Stagflation)  [diagonal]
+    2. GL → DB  (Goldilocks → Deflationary Bust)  [skip]
+    3. SG → GL  (Stagflation → Goldilocks)  [diagonal]
+    4. DB → OV  (Deflationary Bust → Overheating)  [diagonal]
+
+--------------------------------------------------------------------
+  V1 — Raw (no smooth, no filter)
+--------------------------------------------------------------------
+  Total regime changes in series: 54
+
+  Full transition count matrix (actual changes only, excludes self-stays):
+  From → To                 GL    OV    SG    DB
+  ----------------------------------------
+  Goldilocks                 —     7     1     0
+  Overheating                7     —     8     0
+  Stagflation                0     9     —    11
+  Deflationary Bust          1     0    10     —
+
+  Audited diagonal/skip transitions:
+    GL → SG  (Goldilocks → Stagflation)                count=  1  NON-ZERO ✗  [2020-01]
+    GL → DB  (Goldilocks → Deflationary Bust)          count=  0  ZERO ✓
+    SG → GL  (Stagflation → Goldilocks)                count=  0  ZERO ✓
+    DB → OV  (Deflationary Bust → Overheating)         count=  0  ZERO ✓
+
+--------------------------------------------------------------------
+  V2 — Smoothed only (no filter)
+--------------------------------------------------------------------
+  Total regime changes in series: 54
+
+  Full transition count matrix (actual changes only, excludes self-stays):
+  From → To                 GL    OV    SG    DB
+  ----------------------------------------
+  Goldilocks                 —     8     0     0
+  Overheating                7     —     8     1
+  Stagflation                0     9     —    10
+  Deflationary Bust          1     0    10     —
+
+  Audited diagonal/skip transitions:
+    GL → SG  (Goldilocks → Stagflation)                count=  0  ZERO ✓
+    GL → DB  (Goldilocks → Deflationary Bust)          count=  0  ZERO ✓
+    SG → GL  (Stagflation → Goldilocks)                count=  0  ZERO ✓
+    DB → OV  (Deflationary Bust → Overheating)         count=  0  ZERO ✓
+
+--------------------------------------------------------------------
+  V3 — Full methodology (smooth+filter)
+--------------------------------------------------------------------
+  Total regime changes in series: 36
+
+  Full transition count matrix (actual changes only, excludes self-stays):
+  From → To                 GL    OV    SG    DB
+  ----------------------------------------
+  Goldilocks                 —     4     0     1
+  Overheating                3     —     6     0
+  Stagflation                1     6     —     7
+  Deflationary Bust          1     0     7     —
+
+  Audited diagonal/skip transitions:
+    GL → SG  (Goldilocks → Stagflation)                count=  0  ZERO ✓
+    GL → DB  (Goldilocks → Deflationary Bust)          count=  1  NON-ZERO ✗  [2020-02]
+    SG → GL  (Stagflation → Goldilocks)                count=  1  NON-ZERO ✗  [1997-04]
+    DB → OV  (Deflationary Bust → Overheating)         count=  0  ZERO ✓
+
+====================================================================
+              SUMMARY TABLE — Audited Transition Counts             
+====================================================================
+
+  Transition                                         V1 (raw)  V2 (smooth)    V3 (full)
+  -------------------------------------------------------------------------------------
+  GL → SG  (Goldilocks → Stagflation)                       1          0 ✓          0 ✓
+  GL → DB  (Goldilocks → Deflationary Bust)               0 ✓          0 ✓            1
+  SG → GL  (Stagflation → Goldilocks)                     0 ✓          0 ✓            1
+  DB → OV  (Deflationary Bust → Overheating)              0 ✓          0 ✓          0 ✓
+
+====================================================================
+                              CONCLUSION                            
+====================================================================
+
+  The zero-diagonal-transition claim:
+  FAILS ENTIRELY.
+  Diagonal transitions occur even in the full production methodology.
+  The zero-diagonal-transition claim cannot be made in the white paper
+  without qualification. Review the months flagged above.
+
+  Per-version status:
+    V1 (raw)        HAS NON-ZERO ✗
+    V2 (smooth)     ALL ZERO ✓
+    V3 (full)       HAS NON-ZERO ✗
+
+====================================================================

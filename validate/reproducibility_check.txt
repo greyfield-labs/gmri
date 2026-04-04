@@ -1,0 +1,64 @@
+========================================================================
+  GMRI INDEPENDENT REPRODUCIBILITY CHECK
+  Generated: 2026-04-04 00:52:39
+========================================================================
+
+  Methodology: Independent researcher simulation.
+  No imports from src/. All classification logic re-implemented
+  from scratch in this script. FRED data fetched fresh.
+
+  Production reference:  validate/regime_classification.csv
+  Reproduction:          Fresh FRED fetch + independent pipeline
+
+------------------------------------------------------------------------
+  COVERAGE
+------------------------------------------------------------------------
+
+  Production reference:  657 months  (1971-01 – 2025-09)
+  Reproduction series:   657 months  (1971-01 – 2025-09)
+
+  Overlapping months:    657
+
+------------------------------------------------------------------------
+  MONTH-BY-MONTH AGREEMENT
+------------------------------------------------------------------------
+
+  Total months compared:   657
+  Agreements:              657  (100.00%)
+  Disagreements:           0  (0.00%)
+
+  Perfect agreement on all months. ✓
+
+------------------------------------------------------------------------
+  COHEN'S KAPPA (inter-rater agreement)
+------------------------------------------------------------------------
+
+  κ = 1.000000
+  Threshold for PASS:  κ > 0.95
+  Interpretation:      Near-perfect agreement
+  Result:              PASS ✓
+
+------------------------------------------------------------------------
+  AGGREGATE REGIME FREQUENCY CHECK  (tolerance ±2.0pp)
+------------------------------------------------------------------------
+
+  Regime                   Prod %  Repro %    Delta  Result
+  ------------------------------------------------------------
+  Goldilocks                9.13%    9.13%   +0.00pp  ✓
+  Overheating              27.40%   27.40%   +0.00pp  ✓
+  Stagflation              39.88%   39.88%   +0.00pp  ✓
+  Deflationary Bust        23.59%   23.59%   +0.00pp  ✓
+
+  Frequency check result:  PASS ✓
+
+========================================================================
+  OVERALL RESULT:  PASS ✓
+========================================================================
+
+  The GMRI regime classification is independently reproducible.
+  An external researcher with access to FRED, the published methodology,
+  and standard Python libraries achieves κ=1.0000 agreement with
+  the production series — well above the 0.95 threshold.
+  All regime frequencies are within ±2pp of the reference.
+
+========================================================================
